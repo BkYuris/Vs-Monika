@@ -1,0 +1,11 @@
+bf
+bf-pixel
+bf-pixel-opponent
+gf-pixel
+senpai
+senpai-angry
+monika
+duet
+playablesenpai
+spirit
+nogf-pixel
