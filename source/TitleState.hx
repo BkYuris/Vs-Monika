@@ -482,57 +482,50 @@ class TitleState extends MusicBeatState
 			switch (sickBeats)
 			{
 				case 1:
-				createCoolText(['the fnf monika team']);
-			// credTextShit.visible = true;
-			case 3:
-				deleteCoolText();
-				createCoolText(['the fnf monika team']);
-				addMoreText('presents');
-			// credTextShit.text += '\npresent...';
-			// credTextShit.addText();
-			case 4:
-				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = 'In association \nwith';
-			// credTextShit.screenCenter();
-			case 5:
-				if (Main.watermarks)
-					createCoolText(['Powered', 'by']);
-			case 7:
-				if (Main.watermarks)
-					addMoreText('Err Natsuki');
-				else
-				{
-					addMoreText('Newgrounds');
-					ngSpr.visible = true;
-				}
-			// credTextShit.text += '\nNewgrounds';
-			case 8:
-				deleteCoolText();
-				ngSpr.visible = false;
-			// credTextShit.visible = false;
+					createCoolText(['Monika is here again Uwuu'], 45);
+				// credTextShit.visible = true;
+				case 3:
+					addMoreText('Credits By', 45);
+					addMoreText('Err Natsuki', 45);
+				// credTextShit.text += '\npresent...';
+				// credTextShit.addText();
+				case 4:
+					deleteCoolText();
+				// credTextShit.visible = false;
+				// credTextShit.text = 'In association \nwith';
+				// credTextShit.screenCenter();
+				case 5:
+					createCoolText(['This is a mod to'], -60);
+				case 7:
+					addMoreText('This game right below lol', -60);
+					logoSpr.visible = true;
+				// credTextShit.text += '\nNewgrounds';
+				case 8:
+					deleteCoolText();
+					logoSpr.visible = false;
+				// credTextShit.visible = false;
 
-			// credTextShit.text = 'Shoutouts Tom Fulp';
-			// credTextShit.screenCenter();
-			case 9:
-				createCoolText([curWacky[0]]);
-			// credTextShit.visible = true;
-			case 11:
-				addMoreText(curWacky[1]);
-			// credTextShit.text += '\nlmao';
-			case 12:
-				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = "Friday";
-			// credTextShit.screenCenter();
-			case 13:
-				addMoreText('Monika');
-			// credTextShit.visible = true;
-			case 14:
-				addMoreText('Full');
-			// credTextShit.text += '\nNight';
-			case 15:
-				addMoreText('Week'); // credTextShit.text += '\nFunkin';
+				// credTextShit.text = 'Shoutouts Tom Fulp';
+				// credTextShit.screenCenter();
+				case 9:
+					createCoolText([curWacky[0]]);
+				// credTextShit.visible = true;
+				case 11:
+					addMoreText(curWacky[1]);
+				// credTextShit.text += '\nlmao';
+				case 12:
+					deleteCoolText();
+				// credTextShit.visible = false;
+				// credTextShit.text = "Friday";
+				// credTextShit.screenCenter();
+				case 13:
+					addMoreText('Monika');
+				// credTextShit.visible = true;
+				case 14:
+					addMoreText('Full');
+				// credTextShit.text += '\nNight';
+				case 15:
+					addMoreText('Week'); // credTextShit.text += '\nFunkin';
 
 			case 16:
 				skipIntro();
