@@ -31,13 +31,16 @@ class MainMenuState extends MusicBeatState
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
 	
-	var optionShit:Array<String> = ['story_mode', 'freeplay', #if ACHIEVEMENTS_ALLOWED 'awards', #end 'credits', #if !switch 'donate', #end 'options'];
+	var optionShit:Array<String> = [
+	'story_mode',
+	'freeplay',
+	'credits',
+	'options'
+	];
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
-    var gfDance: FlxSprite;
-    var danceLeft: Bool = false; 
 
 	override function create()
 	{
@@ -106,16 +109,6 @@ class MainMenuState extends MusicBeatState
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
 			menuItem.updateHitbox();
 		}
-gfDance = new FlxSprite (FlxG.width * 0.4, FlxG.height * 0.07);
-			gfDance.frames = Paths.getSparrowAtlas ('natsuki');
-
-gfDance.animation.addByIndices ('danceLeft', 'Natsu BG', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 , 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, true);
-			add (gfDance);
-			if (gfDance! = null) {
- 				danceLeft =! danceLeft;
-				if (danceLeft)
- 					gfDance.animation.play ('danceLeft');
-			}
 
 		FlxG.camera.follow(camFollowPos, null, 1);
 
@@ -231,8 +224,6 @@ gfDance.animation.addByIndices ('danceLeft', 'Natsu BG', [30, 0, 1, 2, 3, 4, 5, 
 										MusicBeatState.switchState(new StoryMenuState());
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
-									case 'awards':
-										MusicBeatState.switchState(new AchievementsMenuState());
 									case 'credits':
 										MusicBeatState.switchState(new CreditsState());
 									case 'options':
