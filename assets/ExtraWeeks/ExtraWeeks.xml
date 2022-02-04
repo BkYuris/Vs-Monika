@@ -1,0 +1,30 @@
+<!--sedkkdk *\-->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- alot of stuff -->
+<str>
+<!-- STUFF 
+
+Coding Stuff only here
+
+-->
+
+<path name="PsychEngine" type="PsychEngineStuff" />
+
+<var los="{" type="Text" />
+
+<path name="monika_readme" />
+<path name="M_0N1KA" />
+
+<los>
+
+<var loc="{" type="Folder" />
+
+<path name="assets/characters" />
+<path name="assets/data" />
+<path name="assets/images" />
+<path name="assets/shared" />
+<path name="assets/songs" />
+<path name="assets/weeks" />
+<stuff name="stuff" />
+
+<loc>
