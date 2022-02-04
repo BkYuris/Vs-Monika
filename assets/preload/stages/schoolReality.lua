@@ -6,37 +6,37 @@ function onCreate()
     setPropertyFromClass('GameOverSubstate', 'deathSoundName', 'senpaiDies');
     setPropertyFromClass('GameOverSubstate', 'endSoundName', 'gameOverEnd-pixel');
 
-    makeLuaSprite('skyd', 'weeb/weebSky', 300, 240);
+    makeLuaSprite('skyd', 'weebSky', 300, 240);
 	addLuaSprite('skyd', false);
     setProperty('skyd.visible', true)
 	scaleObject('skyd', 7, 7);
-	setLuaSpriteScrollFactor('skyd', 0.9, 0.9);
+	setLuaSpriteScrollFactor('skyd', 1, 1);
     
-    makeLuaSprite('backschoold', 'weeb/weebSchool', 80, 180);
+    makeLuaSprite('backschoold', 'weebSchool', 80, 180);
 	addLuaSprite('backschoold', false);
     setProperty('backschoold.visible', true)
 	scaleObject('backschoold', 7, 7);
-	setLuaSpriteScrollFactor('backschoold', 0.7, 1);
+	setLuaSpriteScrollFactor('backschoold', 1, 1);
 
-    makeLuaSprite('streetd', 'weeb/weebStreet', 1, 1);
+    makeLuaSprite('streetd', 'weebStreet', 1, 1);
 	addLuaSprite('streetd', false);
 	scaleObject('streetd', 8.5, 8.5);
     setProperty('streetd.visible', true)
 	setLuaSpriteScrollFactor('streetd', 1, 1);
 
-	makeLuaSprite('tresssd', 'weeb/weebTreesBack', 450, 325);
+	makeLuaSprite('tresssd', 'weebTreesBack', 450, 325);
 	addLuaSprite('tresssd', false);
     setProperty('tresssd.visible', true)
 	scaleObject('tresssd', 5.5, 5.5);
-	setLuaSpriteScrollFactor('weeb/tresssd', 1, 1);
+	setLuaSpriteScrollFactor('tresssd', 1, 1);
 
-	makeAnimatedLuaSprite('aaaad', 'weeb/weebTrees', 1, 220);
+	makeAnimatedLuaSprite('aaaad', 'weebTrees', 1, 220);
 	addAnimationByPrefix('aaaad', 'bruhD', 'TreesD', 10, true);
 	setGraphicSize('aaaad', getProperty('aaaad.width') * 8.5)
 	setProperty('aaaad.visible', true);
 	addLuaSprite('aaaad', false);
 
-	makeAnimatedLuaSprite('petal1', 'weeb/petals', 1, 220);
+	makeAnimatedLuaSprite('petal1', 'petals', 1, 220);
 	addAnimationByPrefix('petal1', 'bruuhh1', 'PETALS ALL0', 24, true);
 	objectPlayAnimation('petal1', 'bruuhh1', true);
 	setGraphicSize('petal1', getProperty('petal1.width') * 8.5)
