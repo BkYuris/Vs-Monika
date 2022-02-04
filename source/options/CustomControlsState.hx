@@ -23,7 +23,7 @@ class CustomControlsState extends MusicBeatSubstate
 
 	var _pad:FlxVirtualPad;
 	var _hb:Hitbox;
-
+	
 	var exitbutton:FlxUIButton;
 	var exportbutton:FlxUIButton;
 	var importbutton:FlxUIButton;
@@ -47,10 +47,19 @@ class CustomControlsState extends MusicBeatSubstate
 	var bindbutton:flixel.ui.FlxButton;
 
 	var config:Config;
-
+	public static var menuBGf:FlxSprite;	
+	
 	public function new()
 	{
 		super();
+
+        menuBGf = new FlxSprite().loadGraphic(Paths.image('menuTransRights'));
+		menuBGf.color = 0xFFea71fd;
+		menuBGf.setGraphicSize(Std.int(menuBGf.width * 1.1));
+		menuBGf.updateHitbox();
+		menuBGf.screenCenter();
+		menuBGf.antialiasing = ClientPrefs.globalAntialiasing;
+		add(menuBGf);
 
 		//init config
 		config = new Config();
