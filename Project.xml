@@ -81,6 +81,7 @@
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
 	<assets path='psyc' rename='PsychEngine.dev' />
 	<assets path='monika_readme.txt' rename='monika_readme.txt' />
+	<assets path='example_stuff' rename='stuff' />
 	<!-- <template path='mods' /> -->
 	
 	<!-- assets path="CHANGELOG.md" rename='changelog.txt' -->
