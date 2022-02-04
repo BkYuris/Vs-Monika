@@ -1,6 +1,6 @@
 {
 	"difficulties":"Hard",
-	"storyName": "Monika Full Week",
+	"storyName": "Monika Full Week Corrupted",
 	"hideFreeplay": false,
 	"weekBackground": "school",
 	"weekBefore": "",
@@ -13,8 +13,8 @@
 	"hideStoryMode": false,
 	"songs": [
 		[
-			"High School Conflict",
-			"monika-pixel",
+			"High School Conflict Remix",
+			"monika-corrupt-pixel",
 			[
 				255,
 				180,
@@ -22,8 +22,8 @@
 			]
 		],
 		[
-			"Bara No Yume",
-			"duet-pixel",
+			"Bara No Yume Remix",
+			"duet-corrupt-pixel",
 			[
 				255,
 				180,
@@ -31,17 +31,8 @@
 			]
 		],
 		[
-			"Poems N Thorns",
-			"duet-pixel",
-			[
-				255,
-				180,
-				100
-			]
-		],
-		[
-			"Your Reality",
-			"monika-pixel",
+			"Your Reality Remix",
+			"monika-corrupt-pixel",
 			[
 				255,
 				180,
@@ -54,5 +45,5 @@
 		"bf",
 		"gf"
 	],
-	"weekName": "Vs. Monika"
+	"weekName": "Vs. Monika Corrupted"
 }
