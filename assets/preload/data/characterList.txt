@@ -1,5 +1,6 @@
 bf
 bf-pixel
+bf-pixelC
 bf-pixel-opponent
 gf-pixel
 senpai
@@ -9,3 +10,6 @@ duet
 playablesenpai
 spirit
 nogf-pixel
+monikaC
+duetC
+gf-pixelC
