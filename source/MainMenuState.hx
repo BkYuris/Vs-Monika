@@ -94,9 +94,6 @@ class MainMenuState extends MusicBeatState
 		magenta.color = 0xFFfd719b;
 		add(magenta);
 		// magenta.scrollFactor.set();
-
-		menuItems = new FlxTypedGroup<FlxSprite>();
-		add(menuItems);
 		
 		add(backdrop = new FlxBackdrop(Paths.image('scrolling_BG')));
 		backdrop.velocity.set(-40, -40);
@@ -192,6 +189,10 @@ class MainMenuState extends MusicBeatState
 				menu_character.animation.play('play');
 				add(menu_character);
 				}
+				
+		menuItems = new FlxTypedGroup<FlxSprite>();
+		add(menuItems);
+		
         var tex = Paths.getSparrowAtlas('mainmenu/menu', 'preload', true);
         
 		for (i in 0...optionShit.length)
@@ -231,38 +232,30 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
+	if (firstStart)
+			FlxTween.tween(versionShit, {x: 5}, 1.2, {
+				ease: FlxEase.elasticOut,
+				onComplete: function(flxTween:FlxTween)
+				{
+					firstStart = false;
+					changeItem();
+				}
+			});
+		else
+			versionShit.x = 5;
+
+		FlxG.camera.follow(camFollow);
+
 		// NG.core.calls.event.logEvent('swag').send();
-
-		changeItem();
-
-		#if ACHIEVEMENTS_ALLOWED
-		Achievements.loadAchievements();
-		var leDate = Date.now();
-		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
-			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
-			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
-				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
-				giveAchievement();
-				ClientPrefs.saveSettings();
-			}
-		}
-		#end
 
 		#if mobileC
 		addVirtualPad(UP_DOWN, A_B_C);
 		#end
 
+		changeItem();
+
 		super.create();
 	}
-
-	#if ACHIEVEMENTS_ALLOWED
-	// Unlocks "Freaky on a Friday Night" achievement
-	function giveAchievement() {
-		add(new AchievementObject('friday_night_play', camAchievement));
-		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-		trace('Giving achievement "friday_night_play"');
-	}
-	#end
 
 	var selectedSomethin:Bool = false;
 

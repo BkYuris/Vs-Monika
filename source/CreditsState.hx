@@ -45,7 +45,7 @@ class CreditsState extends MusicBeatState
 		add(bg);
 		
         add(backdrop = new FlxBackdrop(Paths.image('scrolling_BG')));
-		backdrop.velocity.set(-40, -40)
+		backdrop.velocity.set(-40, -40);
 		
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
