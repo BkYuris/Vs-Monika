@@ -41,6 +41,8 @@ class MainMenuState extends MusicBeatState
     
     public static var firstStart:Bool = true;
     
+    var newGaming:FlxText;
+	var newGaming2:FlxText;
     var show:String = "";
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
