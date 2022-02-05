@@ -38,7 +38,10 @@ class MainMenuState extends MusicBeatState
 	'credits',
 	'options'
 	];
-
+    
+    public static var firstStart:Bool = true;
+    
+    var show:String = "";
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
