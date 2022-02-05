@@ -34,7 +34,7 @@ class MainMenuState extends MusicBeatState
 	
 	var optionShit:Array<String> = [
 	'story mode',
-	'freeplay'
+	'freeplay',
 	'credits',
 	'options'
 	];
