@@ -7,6 +7,7 @@ import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.display.FlxBackdrop;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
@@ -31,7 +32,8 @@ class CreditsState extends MusicBeatState
 	var descText:FlxText;
 	var intendedColor:Int;
 	var colorTween:FlxTween;
-
+    var backdrop:FlxBackdrop;
+    
 	override function create()
 	{
 		#if desktop
@@ -41,7 +43,10 @@ class CreditsState extends MusicBeatState
 
 		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		add(bg);
-
+		
+        add(backdrop = new FlxBackdrop(Paths.image('scrolling_BG')));
+		backdrop.velocity.set(-40, -40)
+		
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 

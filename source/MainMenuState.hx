@@ -8,6 +8,7 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxCamera;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.display.FlxBackdrop;
 import flixel.effects.FlxFlicker;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -24,7 +25,7 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var psychEngineVersion:String = '1.7.2'; //This is also used for Discord RPC
+	public static var psychEngineVersion:String = '0.4.2'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -32,8 +33,8 @@ class MainMenuState extends MusicBeatState
 	private var camAchievement:FlxCamera;
 	
 	var optionShit:Array<String> = [
-	'story_mode',
-	'freeplay',
+	'story mode',
+	'freeplay'
 	'credits',
 	'options'
 	];
@@ -41,7 +42,11 @@ class MainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
-
+    var backdrop:FlxBackdrop;
+    var menu_character:FlxSprite;
+    var logo:FlxSprite;
+    var logoBl:FlxSprite;
+    
 	override function create()
 	{
 		#if desktop
@@ -89,24 +94,127 @@ class MainMenuState extends MusicBeatState
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
+		
+		add(backdrop = new FlxBackdrop(Paths.image('scrolling_BG')));
+		backdrop.velocity.set(-40, -40);
+		
+        var random = FlxG.random.float(0, 40);
+		// show = 'senpai';
+		trace(random);
+		if (!FlxG.save.data.extrabeaten)
+		{
+			trace('natsuki');
+			show = 'natsuki';
+		}
+		else
+		{
+			trace('pixelmonika');
+			show = 'pixelmonika';
+		}
+		if (random >= 20 && random <= 40)
+		{
+			trace('senpai');
+			show = 'senpai';
+		}
+		
+		logo = new FlxSprite(-900, -359).loadGraphic(Paths.image('Credits_LeftSide'));
+		logo.antialiasing = true;
+		add(logo);
+		if (firstStart)
+			FlxTween.tween(logo, {x: -700}, 1.2, {
+				ease: FlxEase.elasticOut,
+				onComplete: function(flxTween:FlxTween)
+				{
+					firstStart = false;
+					changeItem();
+				}
+			});
+		else
+			logo.x = -700;
 
+		//-600, -400
+		logoBl = new FlxSprite(-800, -400);
+		logoBl.frames = Paths.getSparrowAtlas('DDLCStart_Screen_Assets');
+		logoBl.antialiasing = true;
+		logoBl.scale.set(0.5, 0.5);
+		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
+		logoBl.animation.play('bump');
+		logoBl.updateHitbox();
+		add(logoBl);
+		if (firstStart)
+			FlxTween.tween(logoBl, {x: -600}, 1.2, {
+				ease: FlxEase.elasticOut,
+				onComplete: function(flxTween:FlxTween)
+				{
+					firstStart = false;
+					changeItem();
+				}
+			});
+		else
+			logoBl.x = -600;
+
+		/*
+			fumo = new FlxSprite(-100, -250).loadGraphic(Paths.image('Fumo'));
+			fumo.scale.set(1, 1);
+			add(fumo);
+		 */
+
+		switch (show)
+		{
+		case 'senpai':
+				menu_character = new FlxSprite(-100, -250);
+				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/Senpai');
+				menu_character.antialiasing = true;
+				menu_character.scale.set(.9, .9);
+				menu_character.animation.addByPrefix('play', 'senpai_microphone', 24);
+				menu_character.updateHitbox();
+				menu_character.animation.play('play');
+				add(menu_character);
+		case 'pixelmonika':
+				menu_character = new FlxSprite(-40, -240);
+				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/pixelmonika');
+				menu_character.antialiasing = true;
+				menu_character.scale.set(.7, .7);
+				menu_character.animation.addByPrefix('play', 'Monika_Neutral_gif', 24, false);
+				menu_character.updateHitbox();
+				menu_character.animation.play('play');
+				add(menu_character);
+        case 'natsuki':
+				menu_character = new FlxSprite(0, -140);
+				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/natsuki');
+				menu_character.antialiasing = true;
+				menu_character.scale.set(.7, .7);
+				menu_character.animation.addByPrefix('play', 'Natsu BG', 24, false);
+				menu_character.updateHitbox();
+				menu_character.animation.play('play');
+				add(menu_character);
+				}
+        var tex = Paths.getSparrowAtlas('mainmenu/menu', 'preload', true);
+        
 		for (i in 0...optionShit.length)
 		{
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			var menuItem:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
-			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_' + optionShit[i]);
+		var menuItem:FlxSprite = new FlxSprite(-350, 390 + (i * 50));
+			menuItem.frames = tex;
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
-			menuItem.screenCenter(X);
+			menuItem.scale.set(1.5, 1.5);
+			// menuItem.screenCenter(X);
 			menuItems.add(menuItem);
-			var scr:Float = (optionShit.length - 4) * 0.135;
-			if(optionShit.length < 6) scr = 0;
-			menuItem.scrollFactor.set(0, scr);
-			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
-			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
-			menuItem.updateHitbox();
+			menuItem.scrollFactor.set();
+			menuItem.antialiasing = true;
+			if (firstStart)
+				FlxTween.tween(menuItem, {x: 50}, 1.2 + (i * 0.2), {
+					ease: FlxEase.elasticOut,
+					onComplete: function(flxTween:FlxTween)
+					{
+						firstStart = false;
+						changeItem();
+					}
+				});
+			else
+				menuItem.x = 50;
 		}
 
 		FlxG.camera.follow(camFollowPos, null, 1);
@@ -116,10 +224,6 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 4, 0, "Vs Monika Mix", 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -223,7 +327,7 @@ class MainMenuState extends MusicBeatState
 
 								switch (daChoice)
 								{
-									case 'story_mode':
+									case 'story mode':
 										MusicBeatState.switchState(new StoryMenuState());
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
@@ -252,29 +356,36 @@ class MainMenuState extends MusicBeatState
 		});
 	}
 
-	function changeItem(huh:Int = 0)
+function changeItem(huh:Int = 0)
 	{
 		curSelected += huh;
 
-		if (curSelected >= menuItems.length)
+		if (curSelected >= optionShit.length)
 			curSelected = 0;
 		if (curSelected < 0)
-			curSelected = menuItems.length - 1;
+			curSelected = optionShit.length - 1;
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
 			spr.animation.play('idle');
-			spr.offset.y = 0;
-			spr.updateHitbox();
 
 			if (spr.ID == curSelected)
 			{
 				spr.animation.play('selected');
-				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
-				spr.offset.x = 0.15 * (spr.frameWidth / 2 + 180);
-				spr.offset.y = 0.15 * spr.frameHeight;
-				FlxG.log.add(spr.frameWidth);
 			}
+
+			spr.updateHitbox();
 		});
+	}
+
+	override function beatHit()
+	{
+		super.beatHit();
+
+		logoBl.animation.play('bump', true);
+
+		if ((show == 'pixelmonika' || show == 'natsuki' || show == 'senpai')
+			&& curBeat % 2 == 0)
+			menu_character.animation.play('play', true);
 	}
 }
