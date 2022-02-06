@@ -16,7 +16,7 @@ import MainMenuState;
 class LangSelectState extends MusicBeatState
 {
 	public static var leftState:Bool = false;
-
+var backdrop:FlxBackdrop;
 	var warnText:FlxText;
 	override function create()
 	{
