@@ -51,6 +51,7 @@ class MainMenuState extends MusicBeatState
     var menu_character:FlxSprite;
     var logo:FlxSprite;
     var logoBl:FlxSprite;
+    var fumo:FlxSprite;
     
 	override function create()
 	{
