@@ -49,7 +49,6 @@ class LangSelectState extends MusicBeatState
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
 				if(!back) {
-						});
 					});
 				} else {
 					FlxG.sound.play(Paths.sound('confirmMenu'));
