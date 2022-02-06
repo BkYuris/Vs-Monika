@@ -101,7 +101,7 @@ class MainMenuState extends MusicBeatState
 		add(backdrop = new FlxBackdrop(Paths.image('scrolling_BG')));
 		backdrop.velocity.set(-40, -40);
 		
-        var random = FlxG.random.float(0, 40);
+        var random = FlxG.random.float(0, 1);
 		// show = 'senpai';
 		trace(random);
 		if (!FlxG.save.data.extrabeaten)
@@ -114,7 +114,7 @@ class MainMenuState extends MusicBeatState
 			trace('pixelmonika');
 			show = 'pixelmonika';
 		}
-		if (random >= 20 && random <= 40)
+		if (random >= 0 && random <= 1)
 		{
 			trace('senpai');
 			show = 'senpai';
@@ -164,30 +164,30 @@ class MainMenuState extends MusicBeatState
 
 		switch (show)
 		{
+		case 'natsuki':
+				menu_character = new FlxSprite(0, -140);
+				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/natsuki');
+				menu_character.antialiasing = true;
+				menu_character.scale.set(.7, .7);
+				menu_character.animation.addByPrefix('play', 'Natsu BG', 24);
+				menu_character.updateHitbox();
+				menu_character.animation.play('play');
+				add(menu_character);
+	    case 'pixelmonika':
+				menu_character = new FlxSprite(-40, -240);
+				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/pixelmonika');
+				menu_character.antialiasing = true;
+				menu_character.scale.set(.7, .7);
+				menu_character.animation.addByPrefix('play', 'Monika_Neutral_gif', 24);
+				menu_character.updateHitbox();
+				menu_character.animation.play('play');
+				add(menu_character);
 		case 'senpai':
 				menu_character = new FlxSprite(-100, -250);
 				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/Senpai');
 				menu_character.antialiasing = true;
 				menu_character.scale.set(.9, .9);
 				menu_character.animation.addByPrefix('play', 'senpai_microphone', 24);
-				menu_character.updateHitbox();
-				menu_character.animation.play('play');
-				add(menu_character);
-		case 'pixelmonika':
-				menu_character = new FlxSprite(-40, -240);
-				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/pixelmonika');
-				menu_character.antialiasing = true;
-				menu_character.scale.set(.7, .7);
-				menu_character.animation.addByPrefix('play', 'Monika_Neutral_gif', 24, false);
-				menu_character.updateHitbox();
-				menu_character.animation.play('play');
-				add(menu_character);
-        case 'natsuki':
-				menu_character = new FlxSprite(0, -140);
-				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/natsuki');
-				menu_character.antialiasing = true;
-				menu_character.scale.set(.7, .7);
-				menu_character.animation.addByPrefix('play', 'Natsu BG', 24, false);
 				menu_character.updateHitbox();
 				menu_character.animation.play('play');
 				add(menu_character);
@@ -299,23 +299,21 @@ class MainMenuState extends MusicBeatState
 				}
 				else
 				{
-					selectedSomethin = true;
-					FlxG.sound.play(Paths.sound('confirmMenu'));
+				selectedSomethin = true;
+				FlxG.sound.play(Paths.sound('confirmMenu'));
 
-					if(ClientPrefs.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
-
-					menuItems.forEach(function(spr:FlxSprite)
+				menuItems.forEach(function(spr:FlxSprite)
+				{
+					if (curSelected != spr.ID)
 					{
-						if (curSelected != spr.ID)
-						{
-							FlxTween.tween(spr, {alpha: 0}, 0.4, {
-								ease: FlxEase.quadOut,
-								onComplete: function(twn:FlxTween)
-								{
-									spr.kill();
-								}
-							});
-						}
+						FlxTween.tween(spr, {alpha: 0}, 1.3, {
+							ease: FlxEase.quadOut,
+							onComplete: function(twn:FlxTween)
+							{
+								spr.kill();
+							}
+						});
+					}
 						else
 						{
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
