@@ -102,7 +102,7 @@ class MainMenuState extends MusicBeatState
 		add(backdrop = new FlxBackdrop(Paths.image('scrolling_BG')));
 		backdrop.velocity.set(-40, -40);
 		
-        var random = FlxG.random.float(0, 1);
+        var random = FlxG.random.float(0, 5);
 		// show = 'senpai';
 		trace(random);
 		if (!FlxG.save.data.extrabeaten)
@@ -120,6 +120,17 @@ class MainMenuState extends MusicBeatState
 			trace('senpai');
 			show = 'senpai';
 		}
+		if (random >= 2 && random <= 3)
+		{
+		    trace('natsuki');
+			show = 'natsuki';
+		}
+		if (random >= 4 && random <= 5)
+		{
+		    trace('pixelmonika');
+			show = 'pixelmonika';
+		}
+		
 		
 		logo = new FlxSprite(-900, -359).loadGraphic(Paths.image('Credits_LeftSide'));
 		logo.antialiasing = true;
@@ -200,7 +211,7 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 		var menuItem:FlxSprite = new FlxSprite(-350, 390 + (i * 50));
-			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu');
+			menuItem.frames = Paths.getSparrowAtlas('menu', 'preload', true);
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
