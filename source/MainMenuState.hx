@@ -36,6 +36,7 @@ class MainMenuState extends MusicBeatState
 	'story mode',
 	'freeplay',
 	'credits',
+	'language',
 	'options'
 	];
     
@@ -328,6 +329,8 @@ class MainMenuState extends MusicBeatState
 										MusicBeatState.switchState(new FreeplayState());
 									case 'credits':
 										MusicBeatState.switchState(new CreditsState());
+									case 'language':
+				FlxG.switchState(new LangSelectState());
 									case 'options':
 										MusicBeatState.switchState(new OptionsState());
 								}
