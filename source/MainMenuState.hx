@@ -208,10 +208,12 @@ class MainMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
         
+		var tex = Paths.getSparrowAtlas('mainmenu/menu');
+
 		for (i in 0...optionShit.length)
 		{
-		var menuItem:FlxSprite = new FlxSprite(350, 390 + (i * 50));
-			menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu');
+			var menuItem:FlxSprite = new FlxSprite(-350, 390 + (i * 50));
+			menuItem.frames = tex;
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
@@ -262,7 +264,7 @@ class MainMenuState extends MusicBeatState
 		// NG.core.calls.event.logEvent('swag').send();
 
 		#if mobileC
-		addVirtualPad(UP_DOWN, A_B_C);
+		addVirtualPad(UP_DOWN, A_B);
 		#end
 
 		changeItem();
@@ -305,16 +307,7 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.ACCEPT)
 			{
-				if (optionShit[curSelected] == 'donate')
-				{
-					CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
-				}
-				else
-				{
-				selectedSomethin = true;
-				FlxG.sound.play(Paths.sound('confirmMenu'));
-
-				menuItems.forEach(function(spr:FlxSprite)
+			menuItems.forEach(function(spr:FlxSprite)
 				{
 					if (curSelected != spr.ID)
 					{
@@ -326,10 +319,28 @@ class MainMenuState extends MusicBeatState
 							}
 						});
 					}
+				else
+				{
+				FlxG.sound.play(Paths.sound('confirmMenu'));
+
+					if(ClientPrefs.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+
+					menuItems.forEach(function(spr:FlxSprite)
+					{
+						if (curSelected != spr.ID)
+						{
+							FlxTween.tween(spr, {alpha: 0}, 1.3, {
+								ease: FlxEase.quadOut,
+								onComplete: function(twn:FlxTween)
+								{
+									spr.kill();
+								}
+							});
+					}
 						else
 						{
-							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-							{
+						/*	FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+							{ *\
 								var daChoice:String = optionShit[curSelected];
 
 								switch (daChoice)
@@ -345,7 +356,7 @@ class MainMenuState extends MusicBeatState
 									case 'options':
 										MusicBeatState.switchState(new OptionsState());
 								}
-							});
+							// });
 						}
 					});
 				}
