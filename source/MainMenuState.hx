@@ -339,8 +339,8 @@ class MainMenuState extends MusicBeatState
 					}
 						else
 						{
-						// FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-							// {
+					//	FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+						//	{
 								var daChoice:String = optionShit[curSelected];
 
 								switch (daChoice)
@@ -356,12 +356,11 @@ class MainMenuState extends MusicBeatState
 									case 'options':
 										MusicBeatState.switchState(new OptionsState());
 								}
-							// });
+						    // });
 						}
 					});
 				}
 			}
-		}
 			else if (FlxG.keys.justPressed.SEVEN #if mobileC || _virtualpad.buttonC.justPressed #end)
 			{
 				selectedSomethin = true;
