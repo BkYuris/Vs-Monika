@@ -363,10 +363,8 @@ class MainMenuState extends MusicBeatState
 			}
 		}
 
-		if (FlxG.sound.music != null)
-			Conductor.songPosition = FlxG.sound.music.time;
-
 		super.update(elapsed);
+		
 		menuItems.forEach(function(spr:FlxSprite)
         {
 			// spr.screenCenter(X);
