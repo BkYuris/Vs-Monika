@@ -20,7 +20,6 @@ import flixel.util.FlxTimer;
 import lime.app.Application;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxGroup;
-import editors.MasterEditorMenu;
 
 using StringTools;
 
@@ -243,7 +242,7 @@ class MainMenuState extends MusicBeatState
 		// NG.core.calls.event.logEvent('swag').send();
 
 		#if mobileC
-		addVirtualPad(UP_DOWN, A_B_C);
+		addVirtualPad(UP_DOWN, A_B);
 		#end
 
 		changeItem();
@@ -341,12 +340,6 @@ class MainMenuState extends MusicBeatState
 			MusicBeatState.switchState(new OptionsState());
 		}
 	}
-        else if (FlxG.keys.justPressed.SEVEN #if mobileC || _virtualpad.buttonC.justPressed #end)
-			{
-				selectedSomethin = true;
-				MusicBeatState.switchState(new MasterEditorMenu());
-			}
-		
 	function changeItem(huh:Int = 0)
 	{
 		curSelected += huh;
