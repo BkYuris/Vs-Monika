@@ -92,7 +92,7 @@ class MainMenuState extends MusicBeatState
 		add(backdrop = new FlxBackdrop(Paths.image('scrolling_BG')));
 		backdrop.velocity.set(-40, -40);
 
-		var random = FlxG.random.float(0, 20);
+		var random = FlxG.random.float(0, 60);
 		// show = 'senpai';
 		trace(random);
 		if (!FlxG.save.data.extrabeaten)
@@ -109,6 +109,16 @@ class MainMenuState extends MusicBeatState
 		{
 			trace('senpai');
 			show = 'senpai';
+		}
+		if (random >= 21 && random <= 40)
+		{
+			trace('natsuki');
+			show = 'natsuki';
+		}
+		if (random >= 41 && random <= 60)
+		{
+			trace('pixelmonika');
+			show = 'pixelmonika';
 		}
 
 		//-700, =359
@@ -283,7 +293,7 @@ class MainMenuState extends MusicBeatState
 				{
 					if (curSelected != spr.ID)
 					{
-						FlxTween.tween(spr, {alpha: 0}, 1.3, {
+						FlxTween.tween(spr, {alpha: 0}, 0.4, {
 							ease: FlxEase.quadOut,
 							onComplete: function(twn:FlxTween)
 							{
@@ -291,25 +301,17 @@ class MainMenuState extends MusicBeatState
 							}
 						});
 					}
-					else
-					{
-						if (FlxG.save.data.flashing)
-						{
-							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+				else
+					FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+					    {
+						new FlxTimer().start(1, function(tmr:FlxTimer)
 							{
 								goToState();
 							});
 						}
-						else
-						{
-							new FlxTimer().start(1, function(tmr:FlxTimer)
-							{
-								goToState();
-							});
-						}
-					}
-				});
-			}
+					});
+				}
+			});
 		}
 
 		if (FlxG.sound.music != null)
