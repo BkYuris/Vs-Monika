@@ -158,7 +158,7 @@ class MainMenuState extends MusicBeatState
 		{
 			case 'senpai':
 				menu_character = new FlxSprite(-100, -250);
-				menu_character.frames = Paths.getSparrowAtlas('menucharacters/Senpai');
+				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/Senpai');
 				menu_character.antialiasing = true;
 				menu_character.scale.set(.9, .9);
 				menu_character.animation.addByPrefix('play', 'senpai_microphone', 24);
@@ -167,7 +167,7 @@ class MainMenuState extends MusicBeatState
 				add(menu_character);
 			case 'pixelmonika':
 				menu_character = new FlxSprite(-40, -240);
-				menu_character.frames = Paths.getSparrowAtlas('menucharacters/pixelmonika');
+				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/pixelmonika');
 				menu_character.antialiasing = true;
 				menu_character.scale.set(.7, .7);
 				menu_character.animation.addByPrefix('play', 'Monika_Neutral_gif', 24, false);
@@ -176,7 +176,7 @@ class MainMenuState extends MusicBeatState
 				add(menu_character);
 			case 'natsuki':
 				menu_character = new FlxSprite(0, -140);
-				menu_character.frames = Paths.getSparrowAtlas('menucharacters/natsuki');
+				menu_character.frames = Paths.getSparrowAtlas('mainmenu/characters/natsuki');
 				menu_character.antialiasing = true;
 				menu_character.scale.set(.7, .7);
 				menu_character.animation.addByPrefix('play', 'Natsu BG', 24, false);
@@ -324,11 +324,14 @@ class MainMenuState extends MusicBeatState
 
 	function goToState()
 	{
+	
+	FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+	{
 		var daChoice:String = optionShit[curSelected];
 
 		switch (daChoice)
 		{
-			case 'story_mode':
+			case 'story mode':
 			MusicBeatState.switchState(new StoryMenuState());
 			case 'freeplay':
 			MusicBeatState.switchState(new FreeplayState());
@@ -339,7 +342,8 @@ class MainMenuState extends MusicBeatState
 			case 'options':
 			MusicBeatState.switchState(new OptionsState());
 		}
-	}
+	});
+}
 	function changeItem(huh:Int = 0)
 	{
 		curSelected += huh;
