@@ -27,7 +27,7 @@ class MainMenuState extends MusicBeatState
 {
 	var curSelected:Int = 0;
 
-	public static var psychEngineVer:String = "0.4.2";
+	public static var psychEngineVersion:String = "0.4.2";
 
 	var show:String = "";
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -262,13 +262,13 @@ class MainMenuState extends MusicBeatState
 
 		if (!selectedSomethin)
 		{
-			if (controls.UP_P)
+			if (controls.UI_UP_P)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(-1);
 			}
 
-			if (controls.DOWN_P)
+			if (controls.UI_DOWN_P)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 				changeItem(1);
