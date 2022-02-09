@@ -293,7 +293,7 @@ class MainMenuState extends MusicBeatState
 				{
 					if (curSelected != spr.ID)
 					{
-						FlxTween.tween(spr, {alpha: 0}, 0.4, {
+						FlxTween.tween(spr, {alpha: 0}, 1.3, {
 							ease: FlxEase.quadOut,
 							onComplete: function(twn:FlxTween)
 							{
@@ -301,9 +301,8 @@ class MainMenuState extends MusicBeatState
 							}
 						});
 					}
-				else
-					FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-					    {
+					else
+			    	{
 						new FlxTimer().start(1, function(tmr:FlxTimer)
 							{
 								goToState();
@@ -311,9 +310,8 @@ class MainMenuState extends MusicBeatState
 						}
 					});
 				}
-			});
-		}
-
+			}
+		
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 
@@ -325,6 +323,8 @@ class MainMenuState extends MusicBeatState
 	}
 
 	function goToState()
+	{
+FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 	{
 		var daChoice:String = optionShit[curSelected];
 
@@ -341,7 +341,8 @@ class MainMenuState extends MusicBeatState
 			case 'options':
 			MusicBeatState.switchState(new OptionsState());
 		}
-	}
+	});
+}
 
 	function changeItem(huh:Int = 0)
 	{
