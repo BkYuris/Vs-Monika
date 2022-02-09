@@ -324,8 +324,6 @@ class MainMenuState extends MusicBeatState
 
 	function goToState()
 	{
-FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-	{
 		var daChoice:String = optionShit[curSelected];
 
 		switch (daChoice)
@@ -341,8 +339,7 @@ FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 			case 'options':
 			MusicBeatState.switchState(new OptionsState());
 		}
-	});
-}
+	}
 
 	function changeItem(huh:Int = 0)
 	{
